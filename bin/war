@@ -17,8 +17,5 @@ C = cards[len(cards)//2:]
 
 g = Game([Player(1, B), Player(2, C)])
 
-print('start')
 
 g.simulate()
-
-print('end')
