@@ -1,0 +1,12 @@
+#!/user/bin/env python
+
+from war.models.Game import Game
+from war.models.Player import Player
+
+g = Game([Player(1), Player(2)])
+
+print('start')
+
+g.simulate()
+
+print('end')
