@@ -8,8 +8,9 @@ class Player:
 		self._deck = []
 		self._dicard_pile = []
 		self._in_play = []
-		self._init()
 		self.is_out_of_round = None
+		self._playing = True
+		self._init()
 
 	@property
 	def num(self):
@@ -23,17 +24,25 @@ class Player:
 	def is_out_of_round(self):
 		return self._is_out_of_round
 
+	@property
+	def playing(self):
+		return self._playing
+
 	@is_out_of_round.setter
 	def is_out_of_round(self, value):
 		self._is_out_of_round = value
 
 	@deck.setter
 	def deck(self, value):
-		self.deck = value
+		self._deck = value
+
+	@playing.setter
+	def playing(self, value):
+		self._playing = value
 
 	def _init(self):
-		for _ in range (0, 4):
-			for j in range(0, 15):
+		for _ in range (0, 1):
+			for j in range(0, 7):
 				self.deck.append(j)
 
 		shuffle(self.deck)
@@ -43,11 +52,11 @@ class Player:
 		self.dicard_pile = []
 
 
-	def play(self):
+	def play_card(self):
 		if not self._dicard_pile and not self.deck:
 			exit(1)
 		if not self.deck:
-			self.deck = sorted(self._dicard_pile, key = lambda k: random())
+			self.deck = list(sorted(self._dicard_pile, key = lambda k: random()))
 			self._dicard_pile = []
 
 
@@ -70,19 +79,20 @@ class Player:
 	def has_cards(self):
 		return len(self.deck) > 0 or len(self._dicard_pile) > 0 or len(self._in_play) > 0
 
+	def reset(self):
+		self.in_war = False
 
+		if not self.has_cards():
+			self.playing = False
 
 	def war(self):
 		for _ in range(0, 3):
-			card = self.play()
+			card = self.play_card ()
 			if not card:
 				break
 
 
 
-		c = self._deck.draw()
-		self.in_play(c)
-		return c
 
 	def __str__(self):
 		sr = ''
@@ -90,5 +100,5 @@ class Player:
 		sr += f"deck: {str(self.deck)}\n"
 		sr += f"in_play: {str(self._in_play)}\n"
 		sr += f"dicard_pile: {str(self._dicard_pile)}\n"
-		sr += f"is_out_of_round: {self.is_out_of_round}\n"
+		sr += f"_playing: {self._playing}\n"
 		return sr
