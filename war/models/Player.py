@@ -27,6 +27,10 @@ class Player:
 	def is_out_of_round(self, value):
 		self._is_out_of_round = value
 
+	@deck.setter
+	def deck(self, value):
+		self.deck = value
+
 	def _init(self):
 		for _ in range (0, 4):
 			for j in range(0, 15):
@@ -35,7 +39,7 @@ class Player:
 		shuffle(self.deck)
 
 	def shuffle(self):
-		self.deck = sorted(self.dicard_pile, key = lambda k: random.random())
+		self._deck = sorted(self.dicard_pile, key = lambda k: random.random())
 		self.dicard_pile = []
 
 
@@ -43,13 +47,11 @@ class Player:
 		if not self._dicard_pile and not self.deck:
 			exit(1)
 		if not self.deck:
-			self.deck = sorted(self.dicard_pile, key = lambda k: random.random())
-			self.dicard_pile = []
+			self.deck = sorted(self._dicard_pile, key = lambda k: random())
+			self._dicard_pile = []
 
 
 		card = self.deck.pop()
-		print(card)
-		print('card')
 		self._in_play.append(card)
 
 		return (card, self.num)
@@ -60,13 +62,15 @@ class Player:
 		return lossed
 
 	def take(self, cards):
-		self._dicard_pile + cards
+		self._dicard_pile += cards
 
 	def show_card(self):
 		return self._in_play[-1]
 
 	def has_cards(self):
 		return len(self.deck) > 0 or len(self._dicard_pile) > 0 or len(self._in_play) > 0
+
+
 
 	def war(self):
 		for _ in range(0, 3):

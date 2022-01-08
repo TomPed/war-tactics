@@ -13,17 +13,11 @@ class Game:
 		for player in self.players:
 			player.is_out_of_round = False
 		while not self._is_game_over():
-			print('hi')
 			self.war -= 1
 
 			for player in self.players:
-				print(player.has_cards())
 				if player.has_cards() and not player.is_out_of_round:
 					self.pile.append(player.play())
-
-			for player in self.players:
-				print('nurb')
-				print(player)
 
 			if self.war > 0:
 				continue
@@ -38,11 +32,13 @@ class Game:
 			winning_player_num = self._get_round_winner()
 
 			for player in self.players:
-				if player.num != winning_player_num:
-					self._get_player(winning_player_num).take(player.give())
+				self._get_player(winning_player_num).take(player.give())
 
 			for player in self.players:
 				player.is_out_of_round = False
+
+			for player in self.players:
+				print(player)
 
 	def _get_player(self, num):
 		for player in self.players:
