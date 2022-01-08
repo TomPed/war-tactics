@@ -1,8 +1,10 @@
 #!/user/bin/env python
 
+from random import shuffle
+
 from war.models.Game import Game
 from war.models.Player import Player
-from random import shuffle, random
+
 
 cards = []
 for _ in range (0, 4):
@@ -14,8 +16,6 @@ shuffle(cards)
 B = cards[:len(cards)//2]
 C = cards[len(cards)//2:]
 
-
 g = Game([Player(1, B), Player(2, C)])
-
 
 g.simulate()

@@ -8,7 +8,6 @@ class Player:
         self._deck = cards
         self._dicard_pile = []
         self._in_play = []
-        self.is_out_of_round = None
         self._playing = True
 
 
@@ -39,11 +38,6 @@ class Player:
     @playing.setter
     def playing(self, value):
         self._playing = value
-
-
-    def shuffle(self):
-        self._deck = sorted(self.dicard_pile, key = lambda k: random.random())
-        self.dicard_pile = []
 
 
     def play_card(self):
