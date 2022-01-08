@@ -2,8 +2,20 @@
 
 from war.models.Game import Game
 from war.models.Player import Player
+from random import shuffle, random
 
-g = Game([Player(1), Player(2)])
+cards = []
+for _ in range (0, 4):
+	for j in range(0, 13):
+		cards.append(j)
+
+shuffle(cards)
+
+B = cards[:len(cards)//2]
+C = cards[len(cards)//2:]
+
+
+g = Game([Player(1, B), Player(2, C)])
 
 print('start')
 

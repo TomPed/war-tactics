@@ -5,25 +5,27 @@ class Game:
         self.players = players
         self.war = 1
         self.pile = []
+        self._rounds = 0
 
     def is_pile_draw(self):
         pass
 
     def simulate(self):
         while True:
+            self._rounds += 1
+            for p in self.players:
+                p.reset()
             in_play_players = list(filter(lambda p: p.playing, self.players))
             for p in in_play_players:
                 print(p)
             if len(in_play_players) == 1:
-                print('ending')
-            for p in in_play_players:
-                p.reset()
+                print(f"ending{self._rounds}")
+                exit(0)
 
             for p in in_play_players:
                 p.play_card()
 
 
-            print(len(in_play_players))
             while self._is_war():
                 for p in in_play_players:
                     p.war()

@@ -3,14 +3,13 @@ from random import shuffle, random
 
 
 class Player:
-	def __init__(self, num):
+	def __init__(self, num, cards):
 		self._num = num
-		self._deck = []
+		self._deck = cards
 		self._dicard_pile = []
 		self._in_play = []
 		self.is_out_of_round = None
 		self._playing = True
-		self._init()
 
 	@property
 	def num(self):
@@ -40,13 +39,6 @@ class Player:
 	def playing(self, value):
 		self._playing = value
 
-	def _init(self):
-		for _ in range (0, 1):
-			for j in range(0, 7):
-				self.deck.append(j)
-
-		shuffle(self.deck)
-
 	def shuffle(self):
 		self._deck = sorted(self.dicard_pile, key = lambda k: random.random())
 		self.dicard_pile = []
@@ -54,7 +46,7 @@ class Player:
 
 	def play_card(self):
 		if not self._dicard_pile and not self.deck:
-			exit(1)
+			return None
 		if not self.deck:
 			self.deck = list(sorted(self._dicard_pile, key = lambda k: random()))
 			self._dicard_pile = []
@@ -81,13 +73,12 @@ class Player:
 
 	def reset(self):
 		self.in_war = False
-
 		if not self.has_cards():
 			self.playing = False
 
 	def war(self):
 		for _ in range(0, 3):
-			card = self.play_card ()
+			card = self.play_card()
 			if not card:
 				break
 
@@ -100,5 +91,5 @@ class Player:
 		sr += f"deck: {str(self.deck)}\n"
 		sr += f"in_play: {str(self._in_play)}\n"
 		sr += f"dicard_pile: {str(self._dicard_pile)}\n"
-		sr += f"_playing: {self._playing}\n"
+		sr += f"_playing: {self.playing}\n"
 		return sr
