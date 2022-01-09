@@ -1,5 +1,7 @@
 #!/user/bin/env python
 
+import sys
+
 from random import shuffle
 
 from war.models.Game import Game
@@ -7,17 +9,31 @@ from war.models.Player import Player
 
 
 lengths = []
-for _ in range(100):
+num_players = int(sys.argv[1])
+num_games = int(sys.argv[2])
+for _ in range(num_games):
     cards = []
     for _ in range (0, 4):
         for j in range(0, 13):
             cards.append(j)
     shuffle(cards)
 
-    B = cards[:len(cards)//2]
-    C = cards[len(cards)//2:]
-    g = Game([Player(1, B), Player(2, C)])
+    players_cards = []
+    for _ in range(num_players):
+        players_cards.append([])
 
+    deal_to = 0
+    for card in cards:
+        if deal_to > num_players - 1:
+            deal_to = 0
+        players_cards[deal_to].append(card)
+        deal_to += 1
+
+    players = []
+    for i, player_cards in enumerate(players_cards):
+        players.append(Player(i, player_cards))
+
+    g = Game(players)
     lengths.append(g.simulate())
 
 print(lengths)
