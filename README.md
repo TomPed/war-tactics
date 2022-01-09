@@ -65,7 +65,7 @@ player 1 wins
 
 We can see each game, the players starting deck value, who won, and, finally, a list of the number of rounds for each game.
 
-Further more, from the above, we can reason that player 0 lost game 5 even though they started with a better deck, valued at 174. The value of a deck is taken by adding up the card numbers.
+Furthermore, from the above, we can reason that player 0 lost game 5 even though they started with a better deck, valued at 174. The value of a deck is taken by adding up the card numbers.
 
 Mapping of card values:
 - 2  -> `0`
