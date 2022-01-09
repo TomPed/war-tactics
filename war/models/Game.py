@@ -14,12 +14,12 @@ class Game:
                 p.reset()
 
             in_play_players = list(filter(lambda p: p.playing, self.players))
-            for p in in_play_players:
-                print(p)
+            # for p in in_play_players:
+            #     print(p)
 
             if len(in_play_players) == 1:
-                print(f"ending{self._rounds}")
-                return self._rounds
+                # print(f"ending{self._rounds}")
+                return (self._rounds, in_play_players[0].num)
 
             for p in in_play_players:
                 p.play_card()
@@ -28,15 +28,15 @@ class Game:
                 for p in in_play_players:
                     p.war()
 
-            for p in in_play_players:
-                print(p)
+            # for p in in_play_players:
+            #     print(p)
 
             winner = self._get_winning_player()
             for p in in_play_players:
                 winner.take(p.give())
 
-            for p in in_play_players:
-                print(p)
+            # for p in in_play_players:
+            #     print(p)
 
 
     def _is_war(self):

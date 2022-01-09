@@ -11,7 +11,8 @@ from war.models.Player import Player
 lengths = []
 num_players = int(sys.argv[1])
 num_games = int(sys.argv[2])
-for _ in range(num_games):
+for i in range(num_games):
+    print(f"Game {i + 1}/{num_games}")
     cards = []
     for _ in range (0, 4):
         for j in range(0, 13):
@@ -33,7 +34,16 @@ for _ in range(num_games):
     for i, player_cards in enumerate(players_cards):
         players.append(Player(i, player_cards))
 
+    starting_text = ''
+    for player in players:
+        starting_text += f"player: {player.num} starts with value {sum(player.deck)}\n"
+
+
+    starting_text = starting_text.strip()
     g = Game(players)
-    lengths.append(g.simulate())
+    data = g.simulate()
+    lengths.append(data[0])
+    print(starting_text)
+    print(f"player {data[1]} wins\n")
 
 print(lengths)
