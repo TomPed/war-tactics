@@ -6,16 +6,18 @@ from war.models.Game import Game
 from war.models.Player import Player
 
 
-cards = []
-for _ in range (0, 4):
-	for j in range(0, 13):
-		cards.append(j)
+lengths = []
+for _ in range(100):
+    cards = []
+    for _ in range (0, 4):
+        for j in range(0, 13):
+            cards.append(j)
+    shuffle(cards)
 
-shuffle(cards)
+    B = cards[:len(cards)//2]
+    C = cards[len(cards)//2:]
+    g = Game([Player(1, B), Player(2, C)])
 
-B = cards[:len(cards)//2]
-C = cards[len(cards)//2:]
+    lengths.append(g.simulate())
 
-g = Game([Player(1, B), Player(2, C)])
-
-g.simulate()
+print(lengths)

@@ -19,7 +19,7 @@ class Game:
 
             if len(in_play_players) == 1:
                 print(f"ending{self._rounds}")
-                exit(0)
+                return self._rounds
 
             for p in in_play_players:
                 p.play_card()
