@@ -63,7 +63,9 @@ player 1 wins
 [192, 248, 1090, 180, 548, 144, 115]
 ```
 
-We can see the starting value of each player, who one the round, and finally, a sum of the turns for each game. From the above we can reason that player 0 lost game 5 even though they started with a better deck, valued at 174. The value of a deck is taken by adding up the card numbers.
+We can see each game, the players starting deck value, who won, and, finally, a list of the number of rounds for each game.
+
+Further more, from the above, we can reason that player 0 lost game 5 even though they started with a better deck, valued at 174. The value of a deck is taken by adding up the card numbers.
 
 Mapping of card values:
 - 2  -> `0`
@@ -79,4 +81,7 @@ Mapping of card values:
 - Q  -> `10`
 - K  -> `11`
 - A  -> `12`
- 
+
+There is a lot more to extract, what makes a player win, Maybe the number of max values or min values effects your odds of winning? There is a lot to uncover and this is just a start. Check back weekly for updates.
+
+Mel 🫀.
